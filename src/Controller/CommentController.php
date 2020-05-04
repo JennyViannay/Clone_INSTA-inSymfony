@@ -44,11 +44,24 @@ class CommentController extends AbstractController
     public function messages()
     {
         $user = $this->getUser();
-        $conversations = $user->getRecipMessages();
-        dd($conversations);
+        $conversations = $user->getComment();
+
+        $ids = [];
         foreach ($conversations as $value) {
+            if(!empty($value->getTarget())){
+                $user = [
+                    'id' => $value->getTarget()->getId(), 
+                    'username' => $value->getTarget()->getUsername(),
+                    'avatar' => $value->getTarget()->getAvatar()
+                ];
+                array_push($ids, $user);
+            }
+            
         }
-        return $this->render('messages/messages.html.twig');
+        $array = array_unique($ids, SORT_REGULAR);
+        return $this->render('messages/messages.html.twig', [
+            'conversationsWith' => $array
+        ]);
     }
 
     /**

@@ -193,7 +193,7 @@ class User implements UserInterface
      */
     public function getComment(): Collection
     {
-        return $this->comment;
+        return $this->comments;
     }
 
     public function addComment(Comment $comment): self

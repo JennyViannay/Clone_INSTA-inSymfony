@@ -4,33 +4,13 @@
 
 {% block body %}
 <div class="container my-5">
-        {% if success is defined %}
-        <div class="col-12">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{success}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        {% endif %}
-        {% if error is defined %}
-        <div class="row">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{error}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        {% endif %}
     <div class="row">
         <div class="col-lg-2 col-md-12 col-sm-12"></div>
         <div class="col-lg-8 col-md-12 col-sm-12 border py-5">
             <div class="row">
                 <div class="col-9">
                 </div>
-                <div class="col-3">
+                <div class="col-3 mb-5">
                     <button type="button" class="btn btn-insta btn-sm" data-toggle="modal" data-target="#sendMessage">
                         Start conversation
                     </button>
@@ -68,42 +48,25 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="col-12">
+                {% for conversation in conversationsWith %}
                 <div class="row card-post-title border d-flex align-items-center py-2 my-1 bg-white">
-                    <div class="col-8">
-                        <a href="/profile/">
-                            <img src="{{ asset('assets/img/avatar_jenny.jpg')}}" width="40px" height="40px"
-                                style="border-radius: 60%;" class="mx-3"> | @</a>
+                    <div class="col-10">
+                        <a href="/messages-with/{{conversation.id}}">
+                            <img src="{{conversation.avatar}}" width="40px" height="40px" style="border-radius: 60%;"
+                                class="mx-3"> | @{{conversation.username}}</a>
                     </div>
-                    <div class="col-4">
-                        <a href="/follow/" class="btn btn-insta btn-sm">
-                            Follow
-                        </a>
-                        <a href="/unfollow/" class="btn btn-insta btn-sm">
-                            Unfollow
+                    <div class="col-2">
+                        <a href="/delete-conversation" class="btn btn-insta btn-sm">
+                            Delete
                         </a>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            <div class="col-12">
-                <div class="row card-post-title border d-flex align-items-center py-2 my-1 bg-white">
-                    <div class="col-8">
-                        <a href="/profile/">
-                            <img src="{{ asset('assets/img/avatar_jenny.jpg')}}" width="40px" height="40px"
-                                style="border-radius: 60%;" class="mx-3"> | @</a>
-                    </div>
-                    <div class="col-4">
-                        <a href="/follow/" class="btn btn-insta btn-sm">
-                            Follow
-                        </a>
-                        <a href="/unfollow/" class="btn btn-insta btn-sm">
-                            Unfollow
-                        </a>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="col-lg-2 col-md-12 col-sm-12"></div>
