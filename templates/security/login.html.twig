@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/"><img src="https://i.imgur.com/wvLiKam.png" width="100px" height="34px"></a>
+    </div>
+</nav>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center border py-5">
+            <h1><img src="https://i.imgur.com/wvLiKam.png" width="200px" height="68px"></h1>
+            <div class="col-12">
+                {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+            </div>
+            <div class="col-12">
+                <form method="post">
+                    <input placeholder="Phone number, username, or email" type="text" name="username"
+                        class="form-control my-2" required>
+                    <input placeholder="Password" type="password" name="password" class="form-control my-2" required>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <button type="submit" class="btn btn-primary btn-sm my-4" style="width: 315px">Log In</button>
+                </form>
+            </div>
+            <div class="col-12">
+                OR<br>
+                <btn class="btn btn-primary btn-sm"><img src="https://i.imgur.com/exksovo.png"> Fake Log in with
+                    Facebook
+            </div>
+            <hr>
+            <div class="col-12">
+                <div class="forgot"><small><a href="#">Forgot password?</a></small></div>
+            </div>
+            <div class="col-12">
+                <div class="infobox">
+                    <small>
+                        <p>Don't have an account? <a href="/register">Sign up</a></p>
+                    </small>
+                </div>
+                <hr>
+                <div class="apps">
+                    <small>
+                        <p>Get the app.</p>
+                    </small>
+                    <span>
+                        <a href="https://apps.apple.com/app/instagram/id389801252?vt=lo">
+                            <img src="https://i.imgur.com/lREV6Qa.png" height="45px" width="153px">
+                        </a>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DXRR9_gALAAHKOzMSO3MkAOZ0JJtC%26utm_content%3Dlo%26utm_medium%3Dbadge">
+                            <img src="https://i.imgur.com/DFQNKXK.png" height="45" width="151px">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+<footer>
+    <div class="container-fluid text-center mt-5">
+        <div class="row">
+            <div class="col-12 text-center" id="link-footer">
+                <a href="https://www.instagram.com/about/us/">ABOUT US</a>
+                <a href="https://help.instagram.com/">SUPPORT</a>
+                <a href="https://instagram-press.com/">PRESS</a>
+                <a href="https://www.instagram.com/developer/">API</a>
+                <a href="https://www.instagram.com/about/jobs/">JOBS</a>
+                <a href="https://help.instagram.com/519522125107875">PRIVACY</a>
+                <a href="https://help.instagram.com/581066165581870">TERMS</a>
+                <a href="https://www.instagram.com/explore/locations/">DIRECTORY</a>
+                <a href="https://www.instagram.com/directory/profiles/">PROFILES</a>
+                <a href="https://www.instagram.com/directory/hashtags/">HASHTAGS</a>
+                <a href="">LANGUAGE</a>
+            </div>
+            <div class="col-12 text-center mt-3">
+                <p>© 2020 INSTAGRAM</p>
+                <p>Made With LOL by ©2020 Jenny Thug life</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
