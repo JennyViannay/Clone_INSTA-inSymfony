@@ -155,5 +155,17 @@ a {
   position: relative;
 }
 
+/* MESSAGERIE */
+#messagerie {
+  max-height:500px;
+  overflow-y: scroll;
+}
+#target-message {
+  padding: 25px 25px;
+  border-radius: 1%;
+}
 
-
+#user-message { 
+  padding: 25px 25px;
+  border-radius: 1%;
+}

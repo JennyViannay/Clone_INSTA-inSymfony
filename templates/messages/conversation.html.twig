@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversation With {{ target.username }}{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12" id="messagerie">
+            <div class="row card-post-title border d-flex align-items-center py-2 my-1 bg-white">
+                {% for comment in comments|reverse %}
+                {% if comment.user.id == target.id %}
+                <div class="col-8 ml-5 my-3 alert-secondary" id="target-message">
+                    <a href="/profile">
+                        <img src="{{target.avatar}}" width="40px" height="40px" style="border-radius: 60%;"
+                            class="mx-3">
+                    </a>
+                    {{ comment.content }}
+                    <p><small>From : {{target.username}} <br> On : {{comment.createdAt|date('d/m')}}</small></p>
+                </div>
+
+                {% else %}
+                <div class="col-4"></div>
+                <div class="col-7 my-3 text-right alert-primary mr-1" id="user-message">
+                    {{ comment.content }}
+                    <a href="/profile/{{user.id}}">
+                        <img src="{{user.avatar}}" width="40px" height="40px" style="border-radius: 60%;" class="mx-3">
+                    </a>
+                    <p><small>From : {{user.username}} <br> On : {{comment.createdAt|date('d/m')}}</small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12"></div>
+</div>
+{% endblock %}

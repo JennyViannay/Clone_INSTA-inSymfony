@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\PostRepository;
+use App\Entity\User;
 use App\Entity\Comment;
+use App\Repository\CommentRepository;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,6 +63,21 @@ class CommentController extends AbstractController
         $array = array_unique($ids, SORT_REGULAR);
         return $this->render('messages/messages.html.twig', [
             'conversationsWith' => $array
+        ]);
+    }
+
+    /**
+     * @Route("/messages-with/{id}", name="messages-with")
+     */
+    public function messageWith(User $target, CommentRepository $commentRepository)
+    {
+        $idC = $this->getUser()->getId();
+        $idT = $target->getId();
+        $comments = $commentRepository->findByUserTarget($idC, $idT);
+        return $this->render('messages/conversation.html.twig',[
+            'target' => $target,
+            'comments' => $comments,
+            'user' => $this->getUser()
         ]);
     }
 
